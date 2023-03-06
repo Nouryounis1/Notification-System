@@ -1,6 +1,9 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:notifications_system/app/routes/app_pages.dart';
+import 'package:notifications_system/services/local_notification.dart';
 
 class NotificationController extends ChangeNotifier {
   static final NotificationController _instance =
@@ -29,12 +32,27 @@ class NotificationController extends ChangeNotifier {
           channelShowBadge: true,
           enableLights: true,
           icon: 'resource://drawable/res_logomain',
+        ),
+        NotificationChannel(
+          channelGroupKey: 'chats_group',
+          channelKey: 'chats',
+          channelName: 'Basic Notifications',
+          channelDescription: 'Notitfications for basic tests',
+          importance: NotificationImportance.Max,
+          defaultPrivacy: NotificationPrivacy.Secret,
+          defaultRingtoneType: DefaultRingtoneType.Notification,
+          enableVibration: true,
+          channelShowBadge: true,
+          enableLights: true,
+          icon: 'resource://drawable/res_logomain',
         )
       ],
       channelGroups: [
         NotificationChannelGroup(
             channelGroupKey: 'basic_channel_group',
-            channelGroupName: 'Basic group')
+            channelGroupName: 'Basic group'),
+        NotificationChannelGroup(
+            channelGroupKey: 'chats_group', channelGroupName: 'Chat group')
       ],
       debug: debug,
     );
@@ -63,7 +81,11 @@ class NotificationController extends ChangeNotifier {
 //         toastLength: Toast.LENGTH_SHORT,
 //         backgroundColor: Colors.black,
 //         gravity: ToastGravity.BOTTOM);
-    // print('receivedAction ${receivedAction.toString()}');
+    print('receivedAction ${receivedAction.toString()}');
+
+    if (receivedAction.channelKey == 'chats') {
+      reciveChatNotificationAction(receivedAction);
+    }
 
     if (receivedAction.buttonKeyPressed == 'SUBSCRIBE') {
       Fluttertoast.showToast(
@@ -77,6 +99,20 @@ class NotificationController extends ChangeNotifier {
           toastLength: Toast.LENGTH_SHORT,
           backgroundColor: Colors.black,
           gravity: ToastGravity.BOTTOM);
+    }
+  }
+
+  static Future<void> reciveChatNotificationAction(
+      ReceivedAction receivedAction) async {
+    if (receivedAction.buttonKeyPressed == 'REPLY') {
+      await LocalNotifications.createMessagingNotification(
+          channelKey: 'chats',
+          groupKey: receivedAction.groupKey!,
+          chatName: receivedAction.summary!,
+          username: 'You',
+          message: receivedAction.buttonKeyInput);
+    } else {
+      Get.toNamed(Routes.CHAT);
     }
   }
 

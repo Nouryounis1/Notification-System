@@ -1,5 +1,12 @@
+import 'dart:math';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+
+int creatUniqueID(int maxValue) {
+  Random random = Random();
+  return random.nextInt(maxValue);
+}
 
 class LocalNotifications {
   static basicNotification(int id) {
@@ -48,6 +55,44 @@ class LocalNotifications {
               color: Colors.red),
           NotificationActionButton(
             key: 'DISMISS', label: 'Dismiss', actionType: ActionType.Default,
+
+            autoDismissible: true,
+            // enabled: false,
+            // color: Colors.greenAccent,
+            isDangerousOption: true,
+          ),
+        ]);
+  }
+
+  static Future<void> createMessagingNotification({
+    required String channelKey,
+    required String groupKey,
+    required String chatName,
+    required String username,
+    required String message,
+    String? icon,
+  }) async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: creatUniqueID(AwesomeNotifications.maxID),
+          groupKey: groupKey,
+          channelKey: channelKey,
+          summary: chatName,
+          title: username,
+          body: message,
+          largeIcon: icon,
+          notificationLayout: NotificationLayout.MessagingGroup,
+          category: NotificationCategory.Message,
+        ),
+        actionButtons: [
+          NotificationActionButton(
+              key: 'REPLY',
+              label: 'REPLY',
+              autoDismissible: true,
+              requireInputText: true,
+              color: Colors.blue),
+          NotificationActionButton(
+            key: 'READ', label: 'Mark as read', actionType: ActionType.Default,
 
             autoDismissible: true,
             // enabled: false,

@@ -69,6 +69,23 @@ class HomeView extends GetView<HomeController> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => LocalNotifications.createMessagingNotification(
+                    channelKey: 'chats',
+                    groupKey: 'Nour_group',
+                    chatName: 'Nour Group',
+                    message: 'Nour has send a message',
+                    username: 'Nour',
+                    icon:
+                        'https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png'),
+                child: const Text(
+                  'Chat Notification',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
             ],
           ),
         ),
