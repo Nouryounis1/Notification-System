@@ -17,6 +17,7 @@ class HomeController extends GetxController {
     });
 
     NotificationController.initializeLocalNotificationsListeners();
+    NotificationController.requestFirebaseToken();
     super.onInit();
   }
 

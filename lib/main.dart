@@ -10,6 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await NotificationController.initializeLocalNotifications(debug: true);
+  await NotificationController.initializeRemoteNotifications(debug: true);
   runApp(
     GetMaterialApp(
       title: "Application",

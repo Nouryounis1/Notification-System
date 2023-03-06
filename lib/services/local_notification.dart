@@ -101,4 +101,45 @@ class LocalNotifications {
           ),
         ]);
   }
+
+// Only Works on Android Platform
+  static Future<void> createProgressNotification(int id) async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: id,
+      channelKey: 'basic_channel',
+      title: 'Download Fake File...',
+      body: 'filename.txt',
+      category: NotificationCategory.Progress,
+      payload: {
+        'file': 'filename.txt',
+      },
+      notificationLayout: NotificationLayout.ProgressBar,
+      progress: null,
+      locked: true,
+    ));
+  }
+
+  static Future<void> createEmojiNotification(int id) async {
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: id,
+      channelKey: 'basic_channel',
+      title: 'Hey 👋👋',
+      body: '👋👋',
+      category: NotificationCategory.Social,
+    ));
+  }
+
+  static Future<void> createWakeUpNotification(int id) async {
+    await Future.delayed(const Duration(seconds: 5));
+
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: id,
+      channelKey: 'basic_channel',
+      title: 'Hey 👋👋',
+      wakeUpScreen: true,
+    ));
+  }
 }

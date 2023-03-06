@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "223314866581",
+    "project_id": "notification-system-cfca7",
+    "storage_bucket": "notification-system-cfca7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223314866581:android:8274302075f8bd1a11869c",
+        "android_client_info": {
+          "package_name": "com.example.notifications_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223314866581-cuf5j4sng9umhga9qulkte10u5mpn23u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSVFGccIXoIf74J8lxleAtKQBt8c43dwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223314866581-cuf5j4sng9umhga9qulkte10u5mpn23u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

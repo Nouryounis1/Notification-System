@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:notifications_system/services/local_notification.dart';
+import 'package:notifications_system/services/notification_controller.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -83,6 +84,65 @@ class HomeView extends GetView<HomeController> {
                         'https://e7.pngegg.com/pngimages/178/595/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png'),
                 child: const Text(
                   'Chat Notification',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => LocalNotifications.createProgressNotification(
+                    controller.notificationID.value),
+                child: const Text(
+                  'Progress Notification',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => LocalNotifications.createEmojiNotification(
+                    controller.notificationID.value),
+                child: const Text(
+                  'Emoji Notification',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => LocalNotifications.createWakeUpNotification(
+                    controller.notificationID.value),
+                child: const Text(
+                  'WakeUp Notification',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text('Remote Notifications'),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () =>
+                    NotificationController.subscribeToTopic('anime'),
+                child: const Text(
+                  'Subscribe Topic',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () =>
+                    NotificationController.unsubscribeToTopic('anime'),
+                child: const Text(
+                  'Unsubscribe Topic',
                   style: TextStyle(fontSize: 20),
                 ),
               ),
